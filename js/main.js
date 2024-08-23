@@ -1,9 +1,8 @@
 /* ---- particles.js config ---- */
-s =3;
 particlesJS("particles-js", {
   "particles": {
     "number": {
-      "value": 80,
+      "value": 64,  // Reduced number of particles by 20%
       "density": {
         "enable": true,
         "value_area": 700
@@ -56,7 +55,7 @@ particlesJS("particles-js", {
     },
     "move": {
       "enable": true,
-      "speed": 1,
+      "speed": 0.3,  // Slower speed for upward movement
       "direction": "top",
       "random": false,
       "straight": false,
@@ -111,62 +110,4 @@ particlesJS("particles-js", {
   "retina_detect": true
 });
 
-var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);
-var scene1 = document.getElementById('scene1');
-var parallax = new Parallax(scene1);
-var scene2 = document.getElementById('scene2');
-var parallax = new Parallax(scene2);
-var scene2 = document.getElementById('scene3');
-var parallax = new Parallax(scene2);
-//audi vis
-//
-// sliderValue=8;
-// pJS.particles.array.forEach(function(p) {
-//     p.radius = p.radius * sliderValue; // change by a factor
-//     p.radius = sliderValue; // change to a single size
-// });
-//
-//
-//
-// window.onload = function () {
-//      audioCtx = new AudioContext();
-//      analyser = audioCtx.createAnalyser();
-//      source = audioCtx.createMediaElementSource(audio);
-//      source.connect(analyser);
-//      analyser.connect(audioCtx.destination);
-//      analyser.fftSize = 32;
-//      var a=0;
-//      var frequencyData = new Uint8Array(analyser.frequencyBinCount);
-//
-//      function renderFrame() {
-//          analyser.getByteFrequencyData(frequencyData);
-//          var min= frequencyData[0];
-//          P10.style.height = ((frequencyData[0] * 100) / 256) + "%";
-//          P20.style.height = ((frequencyData[1] * 100) / 256) + "%";
-//          P30.style.height = ((frequencyData[2] * 100) / 256) + "%";
-//          P40.style.height = ((frequencyData[3] * 100) / 256) + "%";
-//          P50.style.height = ((frequencyData[4] * 100) / 256) + "%";
-//          P60.style.height = ((frequencyData[5] * 100) / 256) + "%";
-//          P70.style.height = ((frequencyData[6] * 100) / 256) + "%";
-//          P80.style.height = ((frequencyData[7] * 100) / 256) + "%";
-//          P90.style.height = ((frequencyData[8] * 100) / 256) + "%";
-//          if(min >= a)
-//           {
-//             console.log("high");
-//             s=10;
-//
-//           }
-//           else{
-//             console.log("low");
-//          s=0;
-//             }
-//
-//           a = min;
-//          console.log(frequencyData)
-//          requestAnimationFrame(renderFrame);
-//      }
-//      audio.pause();
-//      audio.play();
-//      renderFrame();
-//  };
+// Remove unnecessary parallax initialization and other unused code

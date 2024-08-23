@@ -20,9 +20,9 @@ body {
 /* ---- Header Styles ---- */
 .head {
   color: #0CDD88;
-  font-family: 'Montserrat', sans-serif; /* Restored to original font */
+  font-family: 'Montserrat', sans-serif;
   font-size: 7vw;
-  font-weight: bold; /* Bold styling for your name */
+  font-weight: bold;
   line-height: 20px;
   margin-bottom: 40px;
 }
@@ -52,14 +52,14 @@ p {
   font-size: 25px;
   margin: 20px 0 0 0;
   color: white;
-  font-family: 'Raleway', sans-serif, 'Roboto', sans-serif, 'Montserrat', sans-serif; /* Restored to original font */
+  font-family: 'Raleway', sans-serif, 'Roboto', sans-serif, 'Montserrat', sans-serif;
 }
 
 /* ---- Icons Container ---- */
 .icons {
-  display: flex; /* Use Flexbox for better alignment */
+  display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* Allow icons to wrap on smaller screens */
+  flex-wrap: wrap;
   margin: 20px 0;
 }
 
@@ -117,7 +117,7 @@ p {
 
 /* ---- Custom Icon Styles ---- */
 .custom-icon {
-  width: 55% !important; /* Adjusted size to fit within the bubble */
+  width: 55% !important;
   height: 55% !important;
   object-fit: contain !important;
   display: block !important;
@@ -134,7 +134,7 @@ p {
 .ico-res:hover i,
 .ico-res:hover .custom-icon {
   color: white;
-  filter: brightness(0) invert(1); /* Makes the custom icon white on hover */
+  filter: brightness(0) invert(1);
 }
 
 /* ---- Responsive Design ---- */

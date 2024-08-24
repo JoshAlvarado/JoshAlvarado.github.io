@@ -1,3 +1,69 @@
+/* General Styles */
+body, html {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #182327;
+    color: white;
+    text-align: center;
+    height: 100%; /* Ensure full height */
+    font-size: 16px; /* Base font size to ensure consistency */
+}
+
+/* Header Styles */
+.header {
+    padding: 30px 20px; /* Adjusted padding to maintain banner height */
+    background-color: #2a3947;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-align: center;
+    z-index: 1; /* Ensure header is above the particle background */
+}
+
+.header h1 {
+    font-size: 4.9em; /* Increased by 40% */
+    font-weight: bold;
+    line-height: 0.9em; /* Adjust line height to reduce space */
+    margin-bottom: 5px; /* Adjust margin to maintain spacing */
+    color: #0CDD88;
+}
+
+.header p {
+    font-size: 1.68em; /* Increased by 40% */
+    line-height: 1em; /* Adjust line height to reduce space */
+    color: #b3b3b3;
+}
+
+.nav {
+    position: absolute;
+    top: 10px; /* Adjusted positioning to align with reduced padding */
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2; /* Ensure navigation is above the particle background */
+}
+
+.back-to-projects,
+.back-to-demos {
+    background-color: #0CDD88;
+    color: #182327;
+    padding: 10px 20px; /* Reset padding to original size */
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2em; /* Reset font size to original size */
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.back-to-projects:hover,
+.back-to-demos:hover {
+    background-color: #14b07b;
+}
+
 /* Main Content Styles */
 .main-content {
     padding: 40px;
@@ -7,12 +73,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* Ensure main content is above the particle background */
 }
 
+/* Project Section Styles */
 .project-section {
     width: 100%;
-    max-width: 1400px;
+    max-width: 1600px; /* Increased max width for wider cards */
     margin-bottom: 60px;
+    z-index: 1; /* Ensure project section is above the particle background */
 }
 
 .project-card {
@@ -24,6 +93,7 @@
     margin-bottom: 30px;
     align-items: center;
     justify-content: space-between;
+    width: 100%; /* Make cards take full width */
 }
 
 .project-info {
@@ -37,23 +107,23 @@
 .project-info h2 {
     font-family: 'Montserrat', sans-serif;
     color: #0CDD88;
-    font-size: 4.0em; /* Increased from 3em */
-    margin-bottom: 0px; /* No space to keep it closer to technologies */
+    font-size: 3.0em; /* Original size */
+    margin-bottom: 0px;
 }
 
 .project-info .technologies-used {
     font-family: 'Raleway', sans-serif;
-    color: #888888; /* Medium importance */
-    font-size: 2.1em; /* Increased from 1.4em */
-    margin-top: 5px; /* Minimal space to keep it closer to title */
-    margin-bottom: 15px; /* Slightly reduced space to separate from description */
+    color: #888888;
+    font-size: 2.1em; /* Original size */
+    margin-top: 5px;
+    margin-bottom: 15px;
     display: block;
 }
 
 .project-info .description {
     font-family: 'Raleway', sans-serif;
-    color: #ddd; /* Least important text */
-    font-size: 1.65em; /* Increased from 1.1em */
+    color: #ddd;
+    font-size: 1.65em; /* Original size */
     line-height: 1.6em;
     margin-bottom: 20px;
     display: block;
@@ -70,7 +140,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em; /* Increased from 1em */
+    font-size: 1.5em; /* Original size */
     transition: background 0.3s;
 }
 
@@ -84,7 +154,7 @@
 }
 
 .demo-btn {
-    background-color: #0CDD88; /* Same color as GitHub button */
+    background-color: #0CDD88;
     color: #182327;
 }
 
@@ -111,7 +181,9 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0; /* Place the particle background behind all content */
+    top: 0;
+    left: 0;
 }
 
 /* Responsive Design */

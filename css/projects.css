@@ -30,7 +30,7 @@
     text-decoration: none;
     color: #0CDD88;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.5em; /* Increased from 1.2em */
     padding: 15px 0;
     display: block;
     transition: background 0.3s;
@@ -81,22 +81,23 @@
 .project-info h2 {
     font-family: 'Montserrat', sans-serif;
     color: #0CDD88;
-    font-size: 2.5em;
-    margin-bottom: 5px;
+    font-size: 4.0em; /* Increased from 3em */
+    margin-bottom: 0px; /* No space to keep it closer to technologies */
 }
 
 .project-info .technologies-used {
     font-family: 'Raleway', sans-serif;
-    color: #888888;
-    font-size: 1.2em;
-    margin-bottom: 20px; /* More margin to enforce separation */
+    color: #888888; /* Medium importance */
+    font-size: 2.1em; /* Increased from 1.4em */
+    margin-top: 5px; /* Minimal space to keep it closer to title */
+    margin-bottom: 15px; /* Slightly reduced space to separate from description */
     display: block;
 }
 
 .project-info .description {
     font-family: 'Raleway', sans-serif;
-    color: #ddd;
-    font-size: 1.3em;
+    color: #ddd; /* Least important text */
+    font-size: 1.65em; /* Increased from 1.1em */
     line-height: 1.6em;
     margin-bottom: 20px;
     display: block;
@@ -113,7 +114,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1em;
+    font-size: 1.5em; /* Increased from 1em */
     transition: background 0.3s;
 }
 
@@ -127,7 +128,7 @@
 }
 
 .demo-btn {
-    background-color: #0CDD88;
+    background-color: #0CDD88; /* Same color as GitHub button */
     color: #182327;
 }
 
@@ -162,7 +163,6 @@
     .sidebar {
         width: 100%;
         height: auto;
-        position:relative;
     }
 
     .main-content {

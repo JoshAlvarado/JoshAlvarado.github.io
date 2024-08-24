@@ -73,31 +73,33 @@
 .project-info {
     flex: 2;
     margin-right: 20px;
-    text-align: left; /* Ensure all text is left-aligned */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-info h2 {
     font-family: 'Montserrat', sans-serif;
     color: #0CDD88;
-    font-size: 2.5em; /* Large size for title */
-    margin-bottom: 10px; /* Adjusted margin for better separation */
+    font-size: 2.5em;
+    margin-bottom: 5px;
 }
 
 .project-info .technologies-used {
     font-family: 'Raleway', sans-serif;
     color: #888888;
-    font-size: 1.5em; /* Medium size for technologies */
-    margin-bottom: 10px; /* Increased margin to separate from description */
-    display: block; /* Ensure the text occupies its own line */
+    font-size: 1.2em;
+    margin-bottom: 20px; /* More margin to enforce separation */
+    display: block;
 }
 
 .project-info .description {
     font-family: 'Raleway', sans-serif;
     color: #ddd;
-    font-size: 1.2em; /* Normal size for description */
-    margin-top: 0; /* No margin at the top */
-    margin-bottom: 20px; /* Spacing at the bottom */
-    clear: both; /* Ensure no text overlap */
+    font-size: 1.3em;
+    line-height: 1.6em;
+    margin-bottom: 20px;
+    display: block;
 }
 
 /* Button Styles */
@@ -125,7 +127,7 @@
 }
 
 .demo-btn {
-    background-color: #0CDD88; /* Same color as GitHub button */
+    background-color: #0CDD88;
     color: #182327;
 }
 
@@ -160,9 +162,9 @@
     .sidebar {
         width: 100%;
         height: auto;
-        position: relative;
+        position:relative;
     }
-    
+
     .main-content {
         margin-left: 0;
         padding: 20px;

@@ -21,10 +21,10 @@ body {
 .head {
   color: #0CDD88;
   font-family: 'Montserrat', sans-serif;
-  font-size: 7vw;
+  font-size: 9.26vw; /* Increased further by 15% */
   font-weight: bold;
-  line-height: 20px;
-  margin-bottom: 40px;
+  line-height: 26.45px; /* Adjusted for better spacing */
+  margin-bottom: 52.9px; /* Increased further by 15% */
 }
 
 p {
@@ -45,12 +45,12 @@ p {
 }
 
 .name {
-  width: 70%;
+  width: 92%; /* Increased further by 15% */
 }
 
 .text {
-  font-size: 25px;
-  margin: 20px 0 0 0;
+  font-size: 33.06px; /* Increased further by 15% */
+  margin: 26.45px 0 0 0; /* Increased further by 15% */
   color: white;
   font-family: 'Raleway', sans-serif, 'Roboto', sans-serif, 'Montserrat', sans-serif;
 }
@@ -60,24 +60,43 @@ p {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin: 26.45px 0; /* Increased further by 15% */
 }
 
 .ico {
-  border: 4px double white;
+  border: 5.29px double white; /* Increased further by 15% */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 66.125px; /* Increased further by 15% */
+  height: 66.125px; /* Increased further by 15% */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 13.225px; /* Increased further by 15% */
   transition: transform 0.2s ease;
+  background-color: transparent;
+}
+
+.ico:hover {
+  transform: translateY(-4px);
+}
+
+.ico:hover i {
+  color: white;
+  filter: brightness(0) invert(1);
+}
+
+.ico a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
 }
 
 .ico i {
   color: #0CDD88;
-  font-size: 24px;
+  font-size: 31.74px; /* Increased further by 15% */
 }
 
 /* ---- Large Icons (Projects and Resume) ---- */
@@ -85,25 +104,29 @@ p {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 20px 0;
+  margin: 26.45px 0; /* Increased further by 15% */
 }
 
 .ico-res {
-  border: 4px double white;
+  border: 5.29px double white; /* Increased further by 15% */
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 92.575px; /* Increased further by 15% */
+  height: 92.575px; /* Increased further by 15% */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
+  margin: 13.225px; /* Increased further by 15% */
   transition: transform 0.2s ease;
   background: transparent;
 }
 
-.ico-res i {
-  color: #0CDD88;
-  font-size: 32px;
+.ico-res:hover {
+  transform: translateY(-4px);
+}
+
+.ico-res:hover i {
+  color: white;
+  filter: brightness(0) invert(1);
 }
 
 .ico-res a {
@@ -115,10 +138,15 @@ p {
   text-decoration: none;
 }
 
+.ico-res i {
+  color: #0CDD88;
+  font-size: 42.32px; /* Increased further by 15% */
+}
+
 /* ---- Custom Icon Styles ---- */
 .custom-icon {
-  width: 55% !important;
-  height: 55% !important;
+  width: 55.7375% !important; /* Increased further by 15% */
+  height: 55.7375% !important; /* Increased further by 15% */
   object-fit: contain !important;
   display: block !important;
   margin: auto !important;
@@ -145,14 +173,14 @@ p {
   }
 
   .head {
-    font-size: 10vw;
+    font-size: 13.225vw; /* Increased further by 15% */
     margin-bottom: 0 !important;
     padding: 0 !important;
   }
 
   .text {
-    font-size: 4vw;
-    margin: 5px 0 4px 0 !important;
+    font-size: 5.29vw; /* Increased further by 15% */
+    margin: 6.6125px 0 5.29px 0 !important; /* Increased further by 15% */
   }
 
   .icons, .large-icon {
@@ -160,25 +188,25 @@ p {
   }
 
   .ico {
-    width: 40px;
-    height: 40px;
+    width: 52.9px; /* Increased further by 15% */
+    height: 52.9px; /* Increased further by 15% */
   }
 
   .ico i {
-    font-size: 20px;
+    font-size: 26.45px; /* Increased further by 15% */
   }
 
   .ico-res {
-    width: 50px;
-    height: 50px;
+    width: 66.125px; /* Increased further by 15% */
+    height: 66.125px; /* Increased further by 15% */
   }
 
   .ico-res i, .ico-res img.custom-icon {
-    font-size: 28px;
+    font-size: 37.03px; /* Increased further by 15% */
   }
 
   .custom-icon {
-    width: 55% !important;
-    height: 55% !important;
+    width: 72.7375% !important; /* Increased further by 15% */
+    height: 72.7375% !important; /* Increased further by 15% */
   }
 }

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoVision: Car Model Code Identifier</title>
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/AutoVisiondemo.css">
+</head>
+<body>
+    <div class="header">
+        <h1>AutoVision: Car Model Code Identifier</h1>
+        <p>Select a demo to explore real-world applications of our car identification technology.</p>
+        <div class="nav">
+            <a href="projects.html" class="back-to-projects">Back to Projects</a>
+            <button id="backToDemos" class="back-to-demos" style="display: none;" onclick="goBack()">Back to Demos</button>
+        </div>
+    </div>
+
+    <!-- Landing Section -->
+    <div id="landing" class="demo-cards">
+        <div class="card" onclick="showDemo('carSalesDemo')">
+            <h2>CarSales.com</h2>
+            <p>Real-world application where I need an automated flagging system when a user’s car information doesn’t match the car model code from the images they uploaded.</p>
+            <button class="demo-button">View Demo</button>
+        </div>
+        <div class="card" onclick="showDemo('carPartsDemo')">
+            <h2>CarParts.com</h2>
+            <p>Real-world application that makes it easier for the user to find their car parts by simply uploading a picture of their car and the information will be automatic.</p>
+            <button class="demo-button">View Demo</button>
+        </div>
+    </div>
+
+    <!-- Car Sales Demo Section -->
+    <div id="carSalesDemo" class="demo-section" style="display: none;">
+        <div class="hero">
+            <h1>CarSales.com</h1>
+            <p>Real-world application where I need an automated flagging system when a user’s car information doesn’t match the car model code from the images they uploaded.</p>
+        </div>
+        <div class="container">
+            <form id="carForm">
+                <div class="form-group">
+                    <label for="carMake">Car Make</label>
+                    <select id="carMake" required>
+                        <option value="" disabled selected>Select Car Make</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Lexus">Lexus</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carYear">Car Year</label>
+                    <select id="carYear" required>
+                        <option value="" disabled selected>Select Car Year</option>
+                        <script>
+                            for (let year = 2000; year <= 2024; year++) {
+                                document.write('<option value="' + year + '">' + year + '</option>');
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carModel">Car Model</label>
+                    <select id="carModel" required>
+                        <option value="" disabled selected>Select Car Model</option>
+                        <option value="C300" data-make="Mercedes">C300</option>
+                        <option value="GLE 350" data-make="Mercedes">GLE 350</option>
+                        <option value="Altima" data-make="Nissan">Altima</option>
+                        <option value="Sentra" data-make="Nissan">Sentra</option>
+                        <option value="M3" data-make="BMW">M3</option>
+                        <option value="M2" data-make="BMW">M2</option>
+                        <option value="IS 350" data-make="Lexus">IS 350</option>
+                        <option value="GS 300" data-make="Lexus">GS 300</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carPrice">Price</label>
+                    <input type="text" id="carPrice" value="Priceless!" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="carCondition">Condition</label>
+                    <input type="text" id="carCondition" value="Like New!" disabled>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Car Parts Demo Section -->
+    <div id="carPartsDemo" class="demo-section" style="display: none;">
+        <div class="hero">
+            <h1>CarParts.com</h1>
+            <p>Real-world application that makes it easier for the user to find their car parts by simply uploading a picture of their car and the information will be automatic.</p>
+        </div>
+        <div class="container">
+            <!-- Car Parts Demo Content -->
+            <p>This section can be filled with content specific to the CarParts.com demo, such as forms or upload features.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to show selected demo section
+        function showDemo(demoId) {
+            document.getElementById('landing').style.display = 'none';
+            document.getElementById(demoId).style.display = 'block';
+            document.getElementById('backToDemos').style.display = 'inline-block'; // Show back to demos button
+        }
+
+        // Function to go back to the landing section
+        function goBack() {
+            document.querySelectorAll('.demo-section').forEach(section => section.style.display = 'none');
+            document.getElementById('landing').style.display = 'flex'; // Use flex to maintain proper layout
+            document.getElementById('backToDemos').style.display = 'none'; // Hide back to demos button
+        }
+
+        // JavaScript to filter car models based on selected make
+        document.getElementById('carMake').addEventListener('change', function() {
+            const selectedMake = this.value;
+            const carModelSelect = document.getElementById('carModel');
+            const options = carModelSelect.querySelectorAll('option');
+
+            // Reset selected model
+            carModelSelect.value = '';
+
+            options.forEach(option => {
+                if (option.getAttribute('data-make') === selectedMake) {
+                    option.style.display = 'block';
+                } else if (option.value) {
+                    option.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize car models to only show relevant options for the default state
+        document.addEventListener('DOMContentLoaded', function() {
+            const carModelSelect = document.getElementById('carModel');
+            const options = carModelSelect.querySelectorAll('option');
+            options.forEach(option => {
+                option.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

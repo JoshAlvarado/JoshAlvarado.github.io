@@ -1,268 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Portfolio</title>
-  <link rel="stylesheet" type="text/css" href="css/main.css" />
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="font-awesome-4.5.0/css/font-awesome.min.css">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #182327;
-      color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-color: #182327;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: rgba(31, 42, 48, 0.9);
-      padding: 30px 20px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      position: fixed;
-      top: 50px;
-      left: 30px;
-      height: calc(100% - 60px);
-      z-index: 2;
-      overflow-y: auto;
-      border-radius: 10px;
-      transition: width 0.3s ease;
-    }
-
-    .sidebar a {
-      display: block;
-      color: #f4f4f4;
-      padding: 12px 20px;
-      text-decoration: none;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      background: #0CDD88;
-      font-weight: bold;
-      transition: background 0.3s ease, padding-left 0.3s ease;
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .sidebar a:hover {
-      background: #0ba872;
-      padding-left: 25px;
-    }
-
-    .content {
-      margin-left: 270px;
-      padding: 30px;
-      width: calc(100% - 320px);
-      position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .project-title {
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 36px;
-      color: #0CDD88;
-    }
-
-    .project-overview {
-      padding: 30px;
-      margin-bottom: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      border-left: 5px solid #0CDD88;
-      border-radius: 10px;
-      font-size: 18px;
-      line-height: 1.6;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .project-overview:hover {
-      background: rgba(255, 255, 255, 0.15);
-    }
-
-    .application-section {
-      margin-bottom: 20px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .application-title {
-      padding: 20px;
-      background: #0CDD88;
-      color: white;
-      cursor: pointer;
-      font-size: 20px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background 0.3s ease;
-    }
-
-    .application-title:hover {
-      background: #0ba872;
-    }
-
-    .application-content {
-      display: none;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      color: #f4f4f4;
-    }
-
-    .application-content p {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .application-section.active .application-content {
-      display: block;
-    }
-
-    .arrow {
-      font-size: 16px;
-      transition: transform 0.3s ease;
-    }
-
-    .application-section.active .arrow {
-      transform: rotate(180deg);
-    }
-
-    /* Media query for responsiveness */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 200px;
-        top: 30px;
-        left: 10px;
-        height: calc(100% - 40px);
-      }
-
-      .content {
-        margin-left: 220px;
-        width: calc(100% - 250px);
-        padding: 20px;
-      }
-
-      .project-title {
-        font-size: 28px;
-      }
-
-      .project-overview {
-        font-size: 16px;
-      }
-
-      .application-title {
-        font-size: 18px;
-      }
-
-      .application-content {
-        font-size: 14px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Joshua Alvarado</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/projects.css">
 </head>
 <body>
-
-  <div id="particles-js"></div>
-
-  <div class="sidebar">
-    <a href="#" onclick="loadProject('car-model')">Car Model Code Classifier</a>
-    <a href="#" onclick="loadProject('asl-translator')">ASL Translator</a>
-  </div>
-
-  <div class="content" id="project-content">
-    <!-- Project content will be loaded here dynamically -->
-  </div>
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/particles.min.js"></script>
-  <script src="js/main.js"></script>
-
-  <script>
-    // Function to load project content dynamically
-    function loadProject(project) {
-      let content = '';
-
-      if (project === 'car-model') {
-        content = `
-          <h1 class="project-title">Car Model Code Classifier</h1>
-          <div class="project-overview">
-            <p>This project is a machine learning model designed to classify car models based on images. It can be used in various real-life applications to identify the correct car model and year, providing valuable insights in situations where the exact model is not known.</p>
-          </div>
-          <div class="application-section">
-            <div class="application-title">Flagging Incorrect Car Model Information
-              <span class="arrow">&#9660;</span>
+    <div id="particles-js"></div>
+    <div class="sidebar">
+        <ul>
+            <li><a href="#car-model">Car Model Code Classifier</a></li>
+            <li><a href="#asl-translator">ASL Translator</a></li>
+            <li><a href="index.html">Go Back to Home Page</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <section id="car-model" class="project-section">
+            <div class="project-card">
+                <div class="project-info">
+                    <h2>Car Model Code Classifier</h2>
+                    <p class="technologies-used">Python, TensorFlow, OpenCV</p>
+                    <p class="description">This project classifies car models based on input data using a convolutional neural network...</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/JoshAlvarado/AutoVision-Car-Model-Code-Identifier" target="_blank" class="button github-btn">GitHub</a>
+                        <a href="https://your-demo-link.com" target="_blank" class="button demo-btn">Demo</a>
+                    </div>
+                </div>
+                <div class="project-media">
+                    <img src="images/shadow.gif" alt="Car Classifier GIF">
+                </div>
             </div>
-            <div class="application-content">
-              <p>This application can be used on car selling websites to verify if the car model uploaded by the seller matches the car's actual appearance. For example, if a seller uploads an image claiming it's a Nissan Altima 2022, but the model classifier identifies it as a L33 (a model from before 2018), the system can flag this as incorrect.</p>
+        </section>
+        <section id="asl-translator" class="project-section">
+            <div class="project-card">
+                <div class="project-info">
+                    <h2>ASL Translator</h2>
+                    <p class="technologies-used">Python, TensorFlow, Keras</p>
+                    <p class="description">This project translates American Sign Language into text using a deep learning model...</p>
+                    <div class="project-buttons">
+                        <a href="https://github.com/JoshAlvarado/ASLTranslator" target="_blank" class="button github-btn">GitHub</a>
+                    </div>
+                </div>
+                <div class="project-media">
+                    <img src="images/shadow.gif" alt="ASL Translator GIF">
+                </div>
             </div>
-          </div>
-          <div class="application-section">
-            <div class="application-title">Identifying Car Models for Parts Lookup
-              <span class="arrow">&#9660;</span>
-            </div>
-            <div class="application-content">
-              <p>If a user needs to find parts for their car but doesn't remember the exact model or year, they can upload an image of their car. The classifier will automatically identify the model and year, simplifying the parts lookup process.</p>
-            </div>
-          </div>`;
-      } else if (project === 'asl-translator') {
-        content = `
-          <h1 class="project-title">ASL Translator</h1>
-          <div class="project-overview">
-            <p>The ASL Translator project is a computer vision application that translates American Sign Language gestures into text or speech in real-time. This tool can be used to facilitate communication for the deaf and hard-of-hearing community, making interactions more inclusive.</p>
-          </div>
-          <div class="application-section">
-            <div class="application-title">Real-Time ASL Translation
-              <span class="arrow">&#9660;</span>
-            </div>
-            <div class="application-content">
-              <p>This feature allows the system to capture and translate ASL gestures into readable text or audible speech instantly, helping bridge the communication gap between ASL users and non-ASL speakers.</p>
-            </div>
-          </div>
-          <div class="application-section">
-            <div class="application-title">ASL Learning Assistance
-              <span class="arrow">&#9660;</span>
-            </div>
-            <div class="application-content">
-              <p>The ASL Translator can also be used as a learning tool, where users can practice their ASL skills and receive immediate feedback, making the learning process more interactive and effective.</p>
-            </div>
-          </div>`;
-      }
-
-      document.getElementById('project-content').innerHTML = content;
-
-      // Reapply the toggle function to the new content
-      document.querySelectorAll('.application-title').forEach(item => {
-        item.addEventListener('click', event => {
-          const parentSection = event.target.closest('.application-section');
-          parentSection.classList.toggle('active');
-        });
-      });
-    }
-
-    // Load the first project by default
-    loadProject('car-model');
-  </script>
-
+        </section>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/particles.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
 </body>
 </html>

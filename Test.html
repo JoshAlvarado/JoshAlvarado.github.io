@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input[type="file"] {
+            margin: 20px 0;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 300px;
+        }
+        .response-box {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Classifier API Test</h1>
+    <p>Select an image to classify:</p>
+
+    <form id="imageForm">
+        <input type="file" id="imageInput" accept="image/*" required>
+        <br>
+        <button type="submit">Classify Image</button>
+    </form>
+
+    <div id="result"></div>
+    <div id="response" class="response-box" hidden>
+        <h3>Classification Results:</h3>
+        <pre id="responseText"></pre>
+    </div>
+
+    <script>
+        const form = document.getElementById('imageForm');
+        const imageInput = document.getElementById('imageInput');
+        const resultDiv = document.getElementById('result');
+        const responseBox = document.getElementById('response');
+        const responseText = document.getElementById('responseText');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const file = imageInput.files[0];
+            if (!file) {
+                alert('Please select an image.');
+                return;
+            }
+
+            // Read the file as base64
+            const reader = new FileReader();
+            reader.onloadend = function() {
+                const base64String = reader.result.split(',')[1];  // Remove the data:image/*;base64, part
+                classifyImage(base64String);
+            };
+            reader.readAsDataURL(file);  // Read the file as a data URL
+        });
+
+        function classifyImage(base64Image) {
+            const apiUrl = "https://4g5quwvx0f.execute-api.us-east-1.amazonaws.com/prod/classify";  // Replace with your API Gateway URL
+            
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: base64Image })
+            })
+            .then(response => response.json())
+            .then(data => {
+                responseBox.hidden = false;
+                responseText.textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                alert('Error classifying image: ' + error.message);
+            });
+        }
+    </script>
+
+</body>
+</html>

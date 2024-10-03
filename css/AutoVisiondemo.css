@@ -94,6 +94,11 @@ body, html {
     color: #888;
 }
 
+.file-name {
+    font-size: 1em;
+    color: #b3b3b3;
+}
+
 /* Button Styles */
 .submit-button {
     background-color: #0CDD88;
@@ -125,6 +130,31 @@ body, html {
 .back-button:hover {
     background-color: #0CDD88;
     color: #182327;
+}
+
+/* Message Box */
+.message-box {
+    font-size: 1.2em;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Loading Spinner */
+.loader {
+    border: 6px solid #f3f3f3; /* Light Grey */
+    border-top: 6px solid #0CDD88; /* Green */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Responsive Design */

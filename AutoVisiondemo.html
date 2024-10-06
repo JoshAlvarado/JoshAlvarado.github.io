@@ -86,7 +86,8 @@
                 <button type="submit" id="submitButton" class="submit-button">Submit</button>
             </form>
             <div id="loader" class="loader" style="display: none;"></div>
-            <div id="validationMessage" class="message-box" style="display: none;"></div>
+            <!-- Message box with new styles for better formatting -->
+            <div id="validationMessage" class="message-box styled-message-box" style="display: none;"></div>
         </div>
     </div>
 
@@ -182,7 +183,11 @@
                     throw new Error('Unexpected API response format');
                 }
                 const highestConfidenceClass = getHighestConfidenceClass(data);
-                validateCarInfo(highestConfidenceClass, carMake, carYear, carModel);
+                if (highestConfidenceClass === null) {
+                    showError(null, true); // Show the "no car detected" message
+                } else {
+                    validateCarInfo(highestConfidenceClass, carMake, carYear, carModel);
+                }
             })
             .catch(error => {
                 showError('Error classifying image: ' + error.message);
@@ -232,8 +237,12 @@
         }
 
         // Display error message
-        function showError(message) {
+        function showError(message, isNoCarDetected = false) {
             const validationMessage = document.getElementById('validationMessage');
+            if (isNoCarDetected) {
+                // If the error is due to no car detected, display a custom helpful message
+                message = "No car detected in the uploaded image. Please ensure that the car is centered in the frame. Best practices include taking a picture from the front or back of the car, avoiding side views.";
+            }
             validationMessage.style.color = '#f00';
             validationMessage.textContent = message;
             validationMessage.style.display = 'block';

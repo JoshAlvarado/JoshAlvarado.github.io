@@ -81,7 +81,13 @@
             .then(response => response.json())
             .then(data => {
                 responseBox.hidden = false;
-                responseText.textContent = JSON.stringify(data, null, 2);
+                // Check if "No car detected" error exists
+                if (data.error && data.error === 'No car detected') {
+                    responseText.textContent = 'No car detected in the uploaded image. Please try again with a clearer image of the car.';
+                } else {
+                    // Display normal classification results
+                    responseText.textContent = JSON.stringify(data, null, 2);
+                }
             })
             .catch(error => {
                 alert('Error classifying image: ' + error.message);

@@ -9,7 +9,7 @@
 <body>
     <div class="header">
         <h1>AutoVision: Car Model Code Identifier</h1>
-        <p>Select a demo to explore real-world applications of our car identification technology.</p>
+        <p>The current model is optimized for identifying Nissan Altima models (L33, L34) and Mercedes C300 models (W204, W205, W206). While out-of-scope vehicles are supported, for the most accurate results in these demos, please use images of the specified models</p>
         <div class="nav">
             <a href="projects.html" class="back-to-projects">Back to Projects</a>
             <button id="backToDemos" class="back-to-demos" style="display: none;" onclick="goBack()">Back to Demos</button>
@@ -44,8 +44,6 @@
                         <option value="" disabled selected>Select Car Make</option>
                         <option value="Mercedes">Mercedes</option>
                         <option value="Nissan">Nissan</option>
-                        <option value="BMW">BMW</option>
-                        <option value="Lexus">Lexus</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -98,7 +96,6 @@
             <p>Real-world application that makes it easier for the user to find their car parts by simply uploading a picture of their car and the information will be automatic.</p>
         </div>
         <div class="container">
-            <!-- Car Parts Demo Content -->
             <p>This section can be filled with content specific to the CarParts.com demo, such as forms or upload features.</p>
         </div>
     </div>
@@ -179,13 +176,12 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (!Array.isArray(data)) {
-                    throw new Error('Unexpected API response format');
-                }
-                const highestConfidenceClass = getHighestConfidenceClass(data);
-                if (highestConfidenceClass === null) {
+                if (data.error === 'nocardetected') {
                     showError(null, true); // Show the "no car detected" message
+                } else if (!Array.isArray(data)) {
+                    throw new Error('Unexpected API response format');
                 } else {
+                    const highestConfidenceClass = getHighestConfidenceClass(data);
                     validateCarInfo(highestConfidenceClass, carMake, carYear, carModel);
                 }
             })
@@ -215,7 +211,6 @@
                 "W206": { make: "Mercedes", model: "C300", years: [2021, 2022, 2023, 2024] },
                 "W205": { make: "Mercedes", model: "C300", years: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] },
                 "W204": { make: "Mercedes", model: "C300", years: [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014] },
-                // Add other car data here
             };
 
             const selectedCar = carData[classCode];
@@ -240,8 +235,8 @@
         function showError(message, isNoCarDetected = false) {
             const validationMessage = document.getElementById('validationMessage');
             if (isNoCarDetected) {
-                // If the error is due to no car detected, display a custom helpful message
-                message = "No car detected in the uploaded image. Please ensure that the car is centered in the frame. Best practices include taking a picture from the front or back of the car, avoiding side views.";
+                // Custom "No car detected" message
+                message = "No car detected in the uploaded image. Please ensure the car is centered, and for best results, use an image of the front or back of the car.";
             }
             validationMessage.style.color = '#f00';
             validationMessage.textContent = message;

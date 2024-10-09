@@ -26,15 +26,71 @@
 
     <!-- Landing Section -->
     <div id="landing" class="demo-cards">
-        <div class="card" onclick="showDemo('carSalesDemo')">
+        <div class="card">
             <h2>CarSales.com</h2>
             <p>Real-world application where I need an automated flagging system when a user’s car information doesn’t match the car model code from the images they uploaded.</p>
-            <button class="demo-button">View Demo</button>
+            <button class="demo-button" onclick="showDemo('carSalesDemo')">View Demo</button>
         </div>
-        <div class="card" onclick="showDemo('carPartsDemo')">
+        <div class="card">
             <h2>CarParts.com</h2>
             <p>Real-world application that makes it easier for the user to find their car parts by simply uploading a picture of their car and the information will be automatic.</p>
-            <button class="demo-button">View Demo</button>
+            <button class="demo-button" onclick="showDemo('carPartsDemo')">View Demo</button>
+        </div>
+    </div>
+
+    <!-- Car Sales Demo Section -->
+    <div id="carSalesDemo" class="demo-section" style="display: none;">
+        <div class="hero">
+            <h1>CarSales.com</h1>
+            <p>Real-world application where I need an automated flagging system when a user’s car information doesn’t match the car model code from the images they uploaded.</p>
+        </div>
+        <div class="container">
+            <form id="carForm">
+                <div class="form-group">
+                    <label for="carMake">Car Make</label>
+                    <select id="carMake" required>
+                        <option value="" disabled selected>Select Car Make</option>
+                        <option value="Mercedes">Mercedes</option>
+                        <option value="Nissan">Nissan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carYear">Car Year</label>
+                    <select id="carYear" required>
+                        <option value="" disabled selected>Select Car Year</option>
+                        <script>
+                            for (let year = 2000; year <= 2024; year++) {
+                                document.write('<option value="' + year + '">' + year + '</option>');
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carModel">Car Model</label>
+                    <select id="carModel" required>
+                        <option value="" disabled selected>Select Car Model</option>
+                        <option value="C300" data-make="Mercedes">C300</option>
+                        <option value="Altima" data-make="Nissan">Altima</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="carImage">Upload Car Image</label>
+                    <input type="file" id="carImage" accept="image/*" class="file-input" style="display: none;" required>
+                    <button type="button" id="customFileButton" class="submit-button">Choose an Image</button>
+                    <span id="fileName" class="file-name" style="margin-left: 15px;">No file chosen</span>
+                </div>
+                <div class="form-group">
+                    <label for="carPrice">Price</label>
+                    <input type="text" id="carPrice" value="Priceless!" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="carCondition">Condition</label>
+                    <input type="text" id="carCondition" value="Like New!" disabled>
+                </div>
+                <button type="submit" id="submitButton" class="submit-button">Submit</button>
+            </form>
+            <div id="loader" class="loader" style="display: none;"></div>
+            <div id="validationMessage" class="message-box styled-message-box" style="display: none;"></div>
         </div>
     </div>
 
@@ -80,7 +136,31 @@
     </div>
 
     <script>
-        // Handle custom upload button for CarParts
+        // Show the selected demo and hide the landing section
+        function showDemo(demoId) {
+            // Hide landing section
+            document.getElementById('landing').style.display = 'none';
+
+            // Show selected demo section
+            document.getElementById(demoId).style.display = 'block';
+
+            // Show the "Back to Demos" button
+            document.getElementById('backToDemos').style.display = 'inline-block';
+        }
+
+        // Handle "Back to Demos" button
+        function goBack() {
+            // Hide all demo sections
+            document.querySelectorAll('.demo-section').forEach(section => section.style.display = 'none');
+
+            // Show the landing section
+            document.getElementById('landing').style.display = 'flex';
+
+            // Hide the "Back to Demos" button
+            document.getElementById('backToDemos').style.display = 'none';
+        }
+
+        // Custom upload button logic for CarParts
         const filePartsInput = document.getElementById('carPartsImage');
         const customPartsFileButton = document.getElementById('customPartsFileButton');
         const filePartsNameDisplay = document.getElementById('filePartsName');
@@ -94,12 +174,9 @@
 
         const imagesPath = 'images/'; // Path to your images folder
 
-        // Check if customPartsFileButton exists to prevent addEventListener error
-        if (customPartsFileButton) {
-            customPartsFileButton.addEventListener('click', function() {
-                filePartsInput.click();
-            });
-        }
+        customPartsFileButton.addEventListener('click', function() {
+            filePartsInput.click();
+        });
 
         filePartsInput.addEventListener('change', function() {
             if (filePartsInput.files[0]) {
@@ -225,12 +302,11 @@
             validationMessage.style.display = 'block';
         }
 
-        // Reuse custom upload button from CarSales
+        // Custom upload button logic for CarSales
         const fileInput = document.getElementById('carImage');
         const customFileButton = document.getElementById('customFileButton');
         const fileNameDisplay = document.getElementById('fileName');
 
-        // Only add event listeners if elements exist
         if (customFileButton) {
             customFileButton.addEventListener('click', function() {
                 fileInput.click();
@@ -245,16 +321,127 @@
             }
         });
 
-        function showDemo(demoId) {
-            document.getElementById('landing').style.display = 'none';
-            document.getElementById(demoId).style.display = 'block';
-            document.getElementById('backToDemos').style.display = 'inline-block';
+        // CarSales form submit handler
+        document.getElementById('carForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const carMake = document.getElementById('carMake').value;
+            const carYear = document.getElementById('carYear').value;
+            const carModel = document.getElementById('carModel').value;
+            const carImage = fileInput.files[0];
+
+            if (!carImage || !carImage.type.startsWith('image/')) {
+                alert('Please upload a valid image file (jpg, png, etc.).');
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.style.backgroundColor = '#808080';
+
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('validationMessage').style.display = 'none';
+
+            resizeImage(carImage, 1024, 1024, function(resizedBlob) {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    const base64Image = reader.result.split(',')[1];
+                    classifyCarImage(base64Image, carMake, carYear, carModel);
+                };
+                reader.readAsDataURL(resizedBlob);
+            });
+        });
+
+        function classifyCarImage(base64Image, carMake, carYear, carModel) {
+            const apiUrl = "https://4g5quwvx0f.execute-api.us-east-1.amazonaws.com/prod/classify";
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: base64Image })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error === 'nocardetected') {
+                    showError(null, true);
+                } else if (!Array.isArray(data)) {
+                    throw new Error('Unexpected API response format');
+                } else {
+                    const highestConfidenceClass = getHighestConfidenceClass(data);
+                    validateCarInfo(highestConfidenceClass, carMake, carYear, carModel);
+                }
+            })
+            .catch(error => {
+                showError('Error classifying image: ' + error.message);
+                enableSubmitButton();
+            });
         }
 
-        function goBack() {
-            document.querySelectorAll('.demo-section').forEach(section => section.style.display = 'none');
-            document.getElementById('landing').style.display = 'flex';
-            document.getElementById('backToDemos').style.display = 'none';
+        function getHighestConfidenceClass(classificationResults) {
+            let highestConfidence = 0;
+            let highestClass = null;
+            classificationResults.forEach(result => {
+                const confidence = parseFloat(result.confidence);
+                if (confidence > highestConfidence) {
+                    highestConfidence = confidence;
+                    highestClass = result.class;
+                }
+            });
+            return highestClass;
+        }
+
+        function validateCarInfo(classCode, carMake, carYear, carModel) {
+            const carData = {
+                "L33": { make: "Nissan", model: "Altima", years: [2012, 2013, 2014, 2015, 2016, 2017, 2018] },
+                "L34": { make: "Nissan", model: "Altima", years: [2019, 2020, 2021, 2022, 2023, 2024] },
+                "W206": { make: "Mercedes", model: "C300", years: [2021, 2022, 2023, 2024] },
+                "W205": { make: "Mercedes", model: "C300", years: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021] },
+                "W204": { make: "Mercedes", model: "C300", years: [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014] },
+            };
+
+            const selectedCar = carData[classCode];
+            let validationMessage = '';
+
+            if (selectedCar) {
+                if (selectedCar.make !== carMake || selectedCar.model !== carModel || !selectedCar.years.includes(parseInt(carYear))) {
+                    validationMessage = `Mismatch detected! The uploaded car image corresponds to a ${selectedCar.make} ${selectedCar.model} (${classCode}), but the form data indicates a different car.`;
+                    showError(validationMessage);
+                } else {
+                    validationMessage = `Success! The uploaded car image matches the form data: ${selectedCar.make} ${selectedCar.model} (${classCode}) from years ${selectedCar.years[0]} - ${selectedCar.years[selectedCar.years.length - 1]}.`;
+                    showSuccess(validationMessage);
+                }
+            } else {
+                validationMessage = 'Car classification is out of scope.';
+                showError(validationMessage);
+            }
+            enableSubmitButton();
+        }
+
+        function showError(message, isNoCarDetected = false) {
+            const validationMessage = document.getElementById('validationMessage');
+            if (isNoCarDetected) {
+                message = "No car detected in the uploaded image. Please ensure the car is centered, and for best results, use an image of the front or back of the car.";
+            }
+            validationMessage.style.color = '#f00';
+            validationMessage.style.backgroundColor = '#ffe6e6';
+            validationMessage.style.border = '2px solid #ff0000';
+            validationMessage.textContent = message;
+            validationMessage.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const validationMessage = document.getElementById('validationMessage');
+            validationMessage.style.color = '#00f';
+            validationMessage.style.backgroundColor = '#e6f7ff';
+            validationMessage.style.border = '2px solid #0000ff';
+            validationMessage.textContent = message;
+            validationMessage.style.display = 'block';
+        }
+
+        function enableSubmitButton() {
+            submitButton.disabled = false;
+            submitButton.style.backgroundColor = '';
         }
 
         function resizeImage(file, maxWidth, maxHeight, callback) {
@@ -292,6 +479,7 @@
             };
             reader.readAsDataURL(file);
         }
+
     </script>
 </body>
 </html>

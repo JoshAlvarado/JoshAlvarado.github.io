@@ -171,7 +171,8 @@ body, html {
 }
 
 .project-media img {
-    max-width: 100%;
+    max-width: 50%; /* Make the GIF take up more of the card width */
+    max-height: 50%; /* Make the GIF take up more of the card height */
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -199,5 +200,9 @@ body, html {
 
     .project-buttons {
         flex-direction: column;
+    }
+
+    .project-media img {
+        max-width: 100%; /* Adjust for smaller screens */
     }
 }

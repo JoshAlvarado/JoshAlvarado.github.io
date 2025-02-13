@@ -6,6 +6,9 @@
     <title>Projects | Joshua Alvarado</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/projects.css">
+
+    <!-- AOS Library for Scroll Animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <!-- Header Section -->
@@ -20,7 +23,7 @@
     <div id="particles-js"></div>
     <div class="main-content">
         <section id="car-model" class="project-section">
-            <div class="project-card">
+            <div class="project-card" data-aos="fade-up">
                 <div class="project-info">
                     <h2>AutoVision: Car Model Code Identifier</h2>
                     <p class="technologies-used">Python, TensorFlow, OpenCV</p>
@@ -31,11 +34,15 @@
                     </div>
                 </div>
                 <div class="project-media">
-                    <img src="images/auto-vision-demo.gif" alt="Car Classifier GIF">
+                    <video autoplay loop muted class="video-player">
+                        <source src="videos/AutoVisionDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>
-        <section id="asl-translator" class="project-section">
+
+        <section id="asl-translator" class="project-section" data-aos="fade-up">
             <div class="project-card">
                 <div class="project-info">
                     <h2>ASL Translator</h2>
@@ -46,14 +53,22 @@
                     </div>
                 </div>
                 <div class="project-media">
-                    <img src="images/shadow.gif" alt="ASL Translator GIF">
+                    <video autoplay loop muted class="video-player">
+                        <source src="videos/ASLTranslatorDemo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </section>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/particles.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/projects.js"></script>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Animation duration in milliseconds
+            once: true // Animation happens only once as you scroll
+        });
+    </script>
 </body>
 </html>

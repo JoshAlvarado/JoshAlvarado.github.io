@@ -8,59 +8,59 @@ body, html {
     text-align: center;
     height: 100%; /* Ensure full height */
     font-size: 16px; /* Base font size to ensure consistency */
+    width: 100%; /* Ensure body takes full width of the page */
+    overflow-x: hidden; /* Prevent horizontal scrolling when large */
 }
 
 /* Header Styles */
 .header {
-    padding: 30px 20px; /* Adjusted padding to maintain banner height */
+    padding: 30px 20px;
     background-color: #2a3947;
     margin-bottom: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     text-align: center;
-    z-index: 1; /* Ensure header is above the particle background */
+    z-index: 1;
 }
 
 .header h1 {
-    font-size: 4.9em; /* Increased by 40% */
+    font-size: 4.9em;
     font-weight: bold;
-    line-height: 0.9em; /* Adjust line height to reduce space */
-    margin-bottom: 5px; /* Adjust margin to maintain spacing */
+    line-height: 0.9em;
+    margin-bottom: 5px;
     color: #0CDD88;
 }
 
 .header p {
-    font-size: 1.68em; /* Increased by 40% */
-    line-height: 1em; /* Adjust line height to reduce space */
+    font-size: 1.68em;
+    line-height: 1em;
     color: #b3b3b3;
 }
 
 .nav {
     position: absolute;
-    top: 10px; /* Adjusted positioning to align with reduced padding */
+    top: 10px;
     right: 20px;
     display: flex;
     gap: 10px;
     justify-content: space-between;
     align-items: center;
-    z-index: 2; /* Ensure navigation is above the particle background */
+    z-index: 2;
 }
 
-.back-to-projects,
-.back-to-demos {
+.back-to-projects {
     background-color: #0CDD88;
     color: #182327;
-    padding: 10px 20px; /* Reset padding to original size */
+    padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 1.2em; /* Reset font size to original size */
+    font-size: 1.2em;
     transition: background-color 0.3s ease;
     border: none;
     cursor: pointer;
 }
 
-.back-to-projects:hover,
-.back-to-demos:hover {
+.back-to-projects:hover {
     background-color: #14b07b;
 }
 
@@ -68,32 +68,38 @@ body, html {
 .main-content {
     padding: 40px;
     color: white;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1; /* Ensure main content is above the particle background */
+    width: 100%; /* Allow full width */
+    max-width: 100%; /* Remove any max-width constraints */
+    margin: 0 auto;
 }
 
 /* Project Section Styles */
 .project-section {
-    width: 100%;
-    max-width: 1600px; /* Increased max width for wider cards */
+    width: 100%; /* Ensure full width for section */
     margin-bottom: 60px;
-    z-index: 1; /* Ensure project section is above the particle background */
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* Project Card Styles */
 .project-card {
     display: flex;
     background: rgba(34, 34, 34, 0.85);
     border-radius: 15px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     margin-bottom: 30px;
     align-items: center;
     justify-content: space-between;
-    width: 100%; /* Make cards take full width */
+    width: 80%; /* Use full width */
+    height: 450px; /* Set the height you like */
+    max-width: none; /* Ensure no max-width is limiting the card */
 }
 
 .project-info {
@@ -107,26 +113,24 @@ body, html {
 .project-info h2 {
     font-family: 'Montserrat', sans-serif;
     color: #0CDD88;
-    font-size: 3.0em; /* Original size */
-    margin-bottom: 0px;
+    font-size: 2.4em;
+    margin-bottom: 10px;
 }
 
 .project-info .technologies-used {
     font-family: 'Raleway', sans-serif;
     color: #888888;
-    font-size: 2.1em; /* Original size */
+    font-size: 1.4em;
     margin-top: 5px;
     margin-bottom: 15px;
-    display: block;
 }
 
 .project-info .description {
     font-family: 'Raleway', sans-serif;
     color: #ddd;
-    font-size: 1.65em; /* Original size */
+    font-size: 1.2em;
     line-height: 1.6em;
     margin-bottom: 20px;
-    display: block;
 }
 
 /* Button Styles */
@@ -140,7 +144,7 @@ body, html {
     padding: 10px 20px;
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em; /* Original size */
+    font-size: 1.2em;
     transition: background 0.3s;
 }
 
@@ -162,19 +166,23 @@ body, html {
     background-color: #14B07B;
 }
 
-/* Media section in the project card */
+/* Media Section */
 .project-media {
-    flex: 1;
+    flex: 0 0 40%; /* Media takes 40% of the card */
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%; /* Fill the card height */
+    border: none; /* Remove any visible border or box around media */
+    background: transparent; /* Ensure no background around media */
 }
 
-.project-media img {
-    max-width: 50%; /* Make the GIF take up more of the card width */
-    max-height: 50%; /* Make the GIF take up more of the card height */
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+.video-player {
+    width: 100%; /* Fit within 40% of card */
+    height: 100%; /* Ensure the video takes full height without cropping */
+    object-fit: contain; /* Maintain aspect ratio and avoid cropping */
+    border-radius: none; /* Remove border radius to make it more invisible */
+    box-shadow: none; /* Remove box shadow to avoid visibility */
 }
 
 /* Particle Background */
@@ -182,27 +190,29 @@ body, html {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Place the particle background behind all content */
+    z-index: 0;
     top: 0;
     left: 0;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 700px) {
-
     .main-content {
         padding: 20px;
     }
 
     .project-card {
         flex-direction: column;
+        height: auto; /* Let height adapt to content on small screens */
     }
 
-    .project-buttons {
-        flex-direction: column;
+    .project-media {
+        width: 100%; /* Make media full width on smaller screens */
+        margin-top: 20px;
     }
 
-    .project-media img {
-        max-width: 100%; /* Adjust for smaller screens */
+    .video-player {
+        width: 100%; /* Fit the full width on small screens */
+        height: auto; /* Maintain aspect ratio */
     }
 }
